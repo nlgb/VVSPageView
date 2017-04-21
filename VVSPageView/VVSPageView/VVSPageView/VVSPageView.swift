@@ -13,11 +13,13 @@ class VVSPageView: UIView {
     fileprivate var style : VVSPageStyle
     fileprivate var titles : [String]
     fileprivate var childVcs : [UIViewController]
+    fileprivate var parentVc : UIViewController
     
-    init(frame: CGRect, style: VVSPageStyle, titles: [String], childVcs: [UIViewController]) {
+    init(frame: CGRect, style: VVSPageStyle, titles: [String], childVcs: [UIViewController], parentVc : UIViewController) {
         self.style = style
         self.titles = titles
         self.childVcs = childVcs
+        self.parentVc = parentVc
         
         super.init(frame: frame)
         setupUI()
@@ -38,6 +40,10 @@ extension VVSPageView {
         titleView.backgroundColor = .gray
         addSubview(titleView)
         // 创建contentView
+        let contentViewFrame = CGRect(x: 0, y: style.titleHeight, width: bounds.width, height: bounds.height - style.titleHeight)
+        let contentView = VVSContentView(frame: contentViewFrame, childVcs: childVcs, parentVc: parentVc)
+        contentView.backgroundColor = UIColor.cyan
+        self.addSubview(contentView)
         
         // 让titleView和contentView可以交互
         

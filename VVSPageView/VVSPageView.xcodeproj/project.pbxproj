@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0145FA71EA9E5BC00074A49 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0145FA61EA9E5BC00074A49 /* UIColor+Extension.swift */; };
 		D01518681EA78CCA00799B0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01518671EA78CCA00799B0B /* AppDelegate.swift */; };
 		D015186A1EA78CCA00799B0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01518691EA78CCA00799B0B /* ViewController.swift */; };
 		D015186D1EA78CCA00799B0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D015186B1EA78CCA00799B0B /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D0145FA61EA9E5BC00074A49 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D01518641EA78CCA00799B0B /* VVSPageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VVSPageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01518671EA78CCA00799B0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D01518691EA78CCA00799B0B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				D01518981EA78D6E00799B0B /* VVSTitleView.swift */,
 				D015189A1EA78E1100799B0B /* VVSContentView.swift */,
 				D015189C1EA78E2F00799B0B /* VVSPageView.swift */,
+				D0145FA61EA9E5BC00074A49 /* UIColor+Extension.swift */,
 			);
 			path = VVSPageView;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0145FA71EA9E5BC00074A49 /* UIColor+Extension.swift in Sources */,
 				D015186A1EA78CCA00799B0B /* ViewController.swift in Sources */,
 				D01518991EA78D6E00799B0B /* VVSTitleView.swift in Sources */,
 				D01518681EA78CCA00799B0B /* AppDelegate.swift in Sources */,
@@ -527,6 +531,7 @@
 				D015188E1EA78CCA00799B0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D015188F1EA78CCA00799B0B /* Build configuration list for PBXNativeTarget "VVSPageViewTests" */ = {
 			isa = XCConfigurationList;
@@ -535,6 +540,7 @@
 				D01518911EA78CCA00799B0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D01518921EA78CCA00799B0B /* Build configuration list for PBXNativeTarget "VVSPageViewUITests" */ = {
 			isa = XCConfigurationList;
@@ -543,6 +549,7 @@
 				D01518941EA78CCA00799B0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

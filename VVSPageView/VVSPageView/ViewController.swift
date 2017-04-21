@@ -27,7 +27,7 @@ class ViewController: UIViewController {
             childVcs.append(vc)
         }
         let pageViewFrame = CGRect(x: 0, y: 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64)
-        let pageView = VVSPageView(frame: pageViewFrame, style: style, titles: titles, childVcs: childVcs)
+        let pageView = VVSPageView(frame: pageViewFrame, style: style, titles: titles, childVcs: childVcs, parentVc: self)
         pageView.backgroundColor = .blue
         view.addSubview(pageView)
     }
