@@ -8,8 +8,14 @@
 
 import UIKit
 
-class VVSTitleView: UIView {
+protocol VVSTitleViewDelegate : class {
+    func titleView(titleView : VVSTitleView, didCilckIndex  index : Int)
+}
 
+class VVSTitleView: UIView {
+    // delegate 用weak修饰 代理遵守协议不再用<>，改用 :
+    weak var delegate : VVSTitleViewDelegate?
+    fileprivate var currentIndex : Int = 0
     
     fileprivate var style : VVSPageStyle
     fileprivate var titles : [String]
@@ -83,7 +89,7 @@ extension VVSTitleView {
             label.tag = i
             label.text = title
             label.textAlignment = .center
-            label.backgroundColor = i == 0 ? style.selectColor : style.normalColor
+            label.textColor = i == 0 ? style.selectColor : style.normalColor
             label.font = UIFont.systemFont(ofSize: style.fontSize)
             scrollView.addSubview(label)
 
@@ -99,9 +105,45 @@ extension VVSTitleView {
 // MARK:- lazy
 extension VVSTitleView {
     @objc fileprivate func titleLabelClick(_ tapGes:UITapGestureRecognizer) {
-        guard let target = tapGes.view as? UILabel else {
+        guard let targetLabel = tapGes.view as? UILabel else {
             return
         }
-        print(target.tag)
+        print(targetLabel.tag)
+        
+        // 点击了同一个标签
+        if targetLabel.tag == currentIndex {
+            return
+        }
+        
+        // 修改上个标签的状态
+        let lastLabel = titleLabels[currentIndex]
+        lastLabel.textColor = style.normalColor
+        // 修改当前标签的状态
+        let currentLabel = targetLabel
+        currentLabel.textColor = style.selectColor
+        currentIndex = currentLabel.tag
+        // 居中显示
+        if style.titleIsScrollEnable {
+            adjustLabelPosition(label: currentLabel)
+        }
+        // 通知delegate
+        delegate?.titleView(titleView: self, didCilckIndex: currentIndex)
+        
+    }
+    
+    private func adjustLabelPosition(label : UILabel) {
+        // 1.计算一下offsetX
+        var offsetX = label.center.x - bounds.width * 0.5
+        
+        // 2.临界值的判断
+        if offsetX < 0 {
+            offsetX = 0
+        }
+        if offsetX > scrollView.contentSize.width - scrollView.bounds.width {
+            offsetX = scrollView.contentSize.width - scrollView.bounds.width
+        }
+        // 3.设置scrollView的contentOffset
+        scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+
     }
 }

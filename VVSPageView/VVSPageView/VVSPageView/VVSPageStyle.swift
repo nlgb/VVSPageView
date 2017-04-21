@@ -15,7 +15,7 @@ class VVSPageStyle {
     
     // titleView的label的属性
     var titleHeight : CGFloat = 44
-    var normalColor : UIColor = .white
+    var normalColor : UIColor = .black
     var selectColor : UIColor = .orange
     var fontSize : CGFloat = 15
     var titleMargin : CGFloat = 30
