@@ -79,3 +79,10 @@ extension VVSContentView : UICollectionViewDataSource {
 extension VVSContentView : UICollectionViewDelegate {
     
 }
+
+extension VVSContentView : VVSTitleViewDelegate {
+    func titleView(titleView: VVSTitleView, didCilckIndex index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
+    }
+}

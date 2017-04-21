@@ -46,6 +46,6 @@ extension VVSPageView {
         self.addSubview(contentView)
         
         // 让titleView和contentView可以交互
-        
+        titleView.delegate = contentView
     }
 }
