@@ -102,7 +102,7 @@ extension VVSTitleView {
     }
 }
 
-// MARK:- lazy
+// MARK:- 事件监听
 extension VVSTitleView {
     @objc fileprivate func titleLabelClick(_ tapGes:UITapGestureRecognizer) {
         guard let targetLabel = tapGes.view as? UILabel else {
@@ -131,7 +131,7 @@ extension VVSTitleView {
         
     }
     
-    private func adjustLabelPosition(label : UILabel) {
+    fileprivate func adjustLabelPosition(label : UILabel) {
         // 1.计算一下offsetX
         var offsetX = label.center.x - bounds.width * 0.5
         
@@ -145,5 +145,26 @@ extension VVSTitleView {
         // 3.设置scrollView的contentOffset
         scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
 
+    }
+}
+
+extension VVSTitleView : VVSContentViewDelegate {
+    func contentView(contentView: VVSContentView, didScrollToIndex index: Int) {
+        if style.titleIsScrollEnable {
+            adjustLabelPosition(label: titleLabels[index])
+        }
+        
+        // 如果titleView支持渐变
+        if style.titleIsTransitionEnable  {
+            
+        } else {
+        // 如果titleView不支持渐变
+            let lastLabel = titleLabels[currentIndex]
+            let currentLabel = titleLabels[index]
+            lastLabel.textColor = style.normalColor
+            currentLabel.textColor = style.selectColor
+            
+        }
+        currentIndex = index
     }
 }

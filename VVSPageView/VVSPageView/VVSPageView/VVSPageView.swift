@@ -47,5 +47,7 @@ extension VVSPageView {
         
         // 让titleView和contentView可以交互
         titleView.delegate = contentView
+        contentView.delegate = titleView
+
     }
 }

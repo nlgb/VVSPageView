@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol VVSContentViewDelegate : class {
+    func contentView(contentView: VVSContentView, didScrollToIndex index: Int)
+}
+
 private let kContentCellID = "kContentCellID"
 
 class VVSContentView: UIView {
 
- 
+    weak var delegate : VVSContentViewDelegate?
+    
     fileprivate var childVcs : [UIViewController]
     fileprivate var parentVc : UIViewController
     
@@ -76,10 +81,28 @@ extension VVSContentView : UICollectionViewDataSource {
     }
 }
 
+// MARK: -UICollectionViewDelegate/ UIScrollViewDelegate
 extension VVSContentView : UICollectionViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if decelerate {
+            return
+        }
+        // 直接拖拽到指定页，没有减速滑动
+        scrollViewDidEndScroll(scrollView: scrollView)
+    }
     
+    // 减速
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollViewDidEndScroll(scrollView: scrollView)
+    }
+    
+    private func scrollViewDidEndScroll(scrollView: UIScrollView) {
+        let index = Int(scrollView.contentOffset.x / scrollView.bounds.width)
+        delegate?.contentView(contentView: self, didScrollToIndex: index)
+    }
 }
 
+// MARK: -VVSTitleViewDelegate
 extension VVSContentView : VVSTitleViewDelegate {
     func titleView(titleView: VVSTitleView, didCilckIndex index: Int) {
         let indexPath = IndexPath(row: index, section: 0)

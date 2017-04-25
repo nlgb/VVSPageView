@@ -12,6 +12,8 @@ class VVSPageStyle {
 
     // titleView是否可以滚动
     var titleIsScrollEnable = false
+    // titleView是否可以过渡
+    var titleIsTransitionEnable = false
     
     // titleView的label的属性
     var titleHeight : CGFloat = 44
